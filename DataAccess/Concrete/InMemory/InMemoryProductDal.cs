@@ -72,7 +72,12 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public List<CategoryOfProductsDTO> GetCategoryOfProducts()
+        public List<CategoryOfProductsDTO> GetCategoryOfProductsPrice()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CategoryOfProductsDTO> GetProcuctFromCategory()
         {
             throw new NotImplementedException();
         }

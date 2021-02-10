@@ -14,7 +14,7 @@ namespace ConsoleUI
             //CatTest();
 
             var p = new ProductManager(new EfProductDal());
-            ConsoleTable.From(p.GetCategoryOfProducts()).Write();
+            ConsoleTable.From(p.GetProcuctFromCategory()).Write();
         }
 
         private static void CatTest()

@@ -30,7 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
-        public List<CategoryOfProductsDTO> GetCategoryOfProducts()
+        public List<CategoryOfProductsDTO> GetCategoryOfProductsPrice()
         {
             using (NorthwindContext context = new NorthwindContext())
             {
@@ -45,7 +45,28 @@ namespace DataAccess.Concrete.EntityFramework
                                  TotalPrice=g.Sum(x=>x.p.UnitPrice),
                                  MaxPrice=g.Max(x=>x.p.UnitPrice),
                                  MinPrice=g.Min(x=>x.p.UnitPrice)
-                             };
+                             };                
+                return result.ToList();
+            }
+        }
+
+        public List<CategoryOfProductsDTO> GetProcuctFromCategory()
+        {
+             using (NorthwindContext context = new NorthwindContext())
+            {
+                 var result = (from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryId
+                             group new {c,p} by new { c.CategoryName,c.CategoryId} into g
+                             select new CategoryOfProductsDTO
+                             {
+                                 CategoryId=g.Key.CategoryId,
+                                 CategoryName=g.Key.CategoryName,
+                                 NumberOfProducts=g.Count(),
+                                 TotalPrice=g.Sum(x=>x.p.UnitPrice),
+                                 MaxPrice=g.Max(x=>x.p.UnitPrice),
+                                 MinPrice=g.Min(x=>x.p.UnitPrice)
+                             }).Where(x=>x.CategoryId==2);                
                 return result.ToList();
             }
         }

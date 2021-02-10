@@ -7,6 +7,7 @@ namespace Entities.DTOs
 {
     public class CategoryOfProductsDTO : IDto
     {
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public int NumberOfProducts { get; set; }
         public decimal TotalPrice { get; set; }      
