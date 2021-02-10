@@ -10,11 +10,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //ProductTest();
+            ProductTest();
             //CatTest();
 
-            var p = new ProductManager(new EfProductDal());
-            ConsoleTable.From(p.GetProcuctFromCategory()).Write();
+            //var p = new ProductManager(new EfProductDal());
+            //ConsoleTable.From(p.GetProcuctFromCategory().Data).Write();
         }
 
         private static void CatTest()
@@ -29,10 +29,16 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
+            var res = productManager.GetAll();
 
-            foreach (var product in productManager.GetProductDetails())
+            if (res.Success)
             {
-                Console.WriteLine(product.ProductName+" / "+product.CategoryName);
+            ConsoleTable.From(res.Data).Write();
+
+            }
+            else
+            {
+                Console.WriteLine(res.Message);
             }
 
             //Console.WriteLine(LambdaMethod.Invoke(2,"ff",true));
