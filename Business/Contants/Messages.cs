@@ -11,5 +11,7 @@ namespace Business.Contants
         public static string ProductNameInvalid = "ürün ismi geçersiz";
 
         public static string MaintenanceTime = "Bakım zamanı";
+
+        public static string ProductListed = "Ürün Listelendi";
     }
 }
