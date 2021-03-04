@@ -3,8 +3,15 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Interceptors
 {
+    /// <summary>
+    /// Interception araya girmek demekmiş
+    /// </summary>
     public abstract class MethodInterception : MethodInterceptionBaseAttribute
     {
+        /// <summary>
+        /// invocation: business method demekmiş yani get update delete işlemleri demek
+        /// </summary>
+        /// <param name="invocation"></param>
         protected virtual void OnBefore(IInvocation invocation) { }
         protected virtual void OnAfter(IInvocation invocation) { }
         protected virtual void OnException(IInvocation invocation, System.Exception e) { }

@@ -16,6 +16,11 @@ namespace Business.Abstract
         IDataResult<List<CategoryOfProductsDTO>> GetCategoryOfProducts();
         IDataResult<List<CategoryOfProductsDTO>> GetProcuctFromCategory();
         IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Product product);
         IDataResult<Product> GetById(int prductId);
+        //Transaction uygulamalarda tutarlılığı korumak için miş
+        //yani yapılan işemler başarısız olursa işlemi geri almak
+        IResult AddTransactionalTest(Product product);
     }
 }

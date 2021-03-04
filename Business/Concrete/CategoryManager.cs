@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,14 +17,32 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public List<Category> GetAll()
+        public IResult Add(Category category)
         {
-            return _categoryDal.GetAll();
+            _categoryDal.Add(category);
+            return new SuccessResult();
         }
 
-        public Category GetById(int categoryId)
+        public IResult Delete(Category category)
         {
-            return _categoryDal.Get(c=>c.CategoryId== categoryId);
+            _categoryDal.Delete(category);
+            return new SuccessResult();
+        }
+
+        public IResult Update(Category category)
+        {
+            _categoryDal.Update(category);
+            return new SuccessResult();
+        }
+
+        public IDataResult<List<Category>> GetAll()
+        {
+           return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
+        }
+
+        public IDataResult<Category> GetById(int categoryId)
+        {
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId));
         }
     }
 }

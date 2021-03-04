@@ -57,11 +57,12 @@ namespace Core.Aspects.Autofac.Exception
                     Type = invocation.Arguments[i].GetType().Name
                 });
             }
+
             var logDetailWithException = new LogDetailWithException
             {
                 MethodName = invocation.Method.Name,
                 Parameters = logParameters,
-                User = (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.User.Identity.Name == null) ? "?" : _httpContextAccessor.HttpContext.User.Identity.Name
+                User = ""// (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.User.Identity.Name == null) ? "?" : _httpContextAccessor.HttpContext.User.Identity.Name
             };
             return logDetailWithException;
         }

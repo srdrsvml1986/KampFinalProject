@@ -1,0 +1,1 @@
+2021-02-27 17:06:16.285 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":1,"ProductName":"Chhai","UnitsInStock":39,"UnitPrice":18.0},"Type":"Product"}]}

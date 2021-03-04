@@ -36,6 +36,7 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
+                var ctx = context;
                 return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }

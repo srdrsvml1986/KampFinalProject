@@ -1,0 +1,2 @@
+2021-03-03 20:27:59.975 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":1,"ProductName":"Chhhhai","UnitsInStock":399,"UnitPrice":18.0000},"Type":"Product"}]}
+2021-03-03 20:33:48.435 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":1,"ProductName":"Chhhhai","UnitsInStock":399,"UnitPrice":18.0000},"Type":"Product"}]}

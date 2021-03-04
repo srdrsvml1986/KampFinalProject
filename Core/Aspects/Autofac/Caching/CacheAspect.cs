@@ -8,12 +8,17 @@ using System.Linq;
 namespace Core.Aspects.Autofac.Caching
 {
     /// <summary>
-    /// CacheAspect
+    /// CacheAspect: veritabınından getilen verilerin cache kaydelilerek 
+    /// verileri cache den almamızı sağlar
     /// </summary>
     public class CacheAspect : MethodInterception
     {
         private readonly int _duration;
         private readonly ICacheManager _cacheManager;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="duration">dakika cinsinden cache süresi</param>
         public CacheAspect(int duration = 60)
         {
             _duration = duration;
@@ -23,6 +28,8 @@ namespace Core.Aspects.Autofac.Caching
         {
             var methodName = string.Format($"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}");
             var arguments = invocation.Arguments.ToList();
+            //string.Join deki  Join bir Linq operasyonu
+            //her bir argumanı aralarına "," koyarak string halinde birleştirir.
             var key = $"{methodName}({string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))})";
             if (_cacheManager.IsAdd(key))
             {

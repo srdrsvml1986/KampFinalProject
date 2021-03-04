@@ -34,7 +34,11 @@ namespace Core.Aspects.Autofac.Logging
         {
             _loggerServiceBase?.Info(GetLogDetail(invocation));
         }
-
+        /// <summary>
+        /// bu method mutlaka kullanıcı login olduktan sonra çalıştırılmalı
+        /// </summary>
+        /// <param name="invocation"></param>
+        /// <returns></returns>
         private string GetLogDetail(IInvocation invocation)
         {
             var logParameters = new List<LogParameter>();
@@ -49,11 +53,14 @@ namespace Core.Aspects.Autofac.Logging
 
                 });
             }
+            
+            //var user = (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.User.Identity.Name == null) ? "?" : _httpContextAccessor.HttpContext.User.Identity.Name;
+
             var logDetail = new LogDetail
             {
                 MethodName = invocation.Method.Name,
                 Parameters = logParameters,
-                User = (_httpContextAccessor.HttpContext == null || _httpContextAccessor.HttpContext.User.Identity.Name == null) ? "?" : _httpContextAccessor.HttpContext.User.Identity.Name
+                User = "test kullanıcı"
 
             };
             return JsonConvert.SerializeObject(logDetail);

@@ -5,7 +5,6 @@ namespace Core.Utilities.Security.Jwt
 {
     public interface ITokenHelper
     {
-        TAccessToken CreateToken<TAccessToken>(User user, IEnumerable<OperationClaim> operationClaims)
-          where TAccessToken : IAccessToken, new();
+        AccessToken CreateToken(User user, IEnumerable<OperationClaim> operationClaims);
     }
 }

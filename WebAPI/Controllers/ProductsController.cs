@@ -17,44 +17,60 @@ namespace WebAPI.Controllers
     {
         //Loosely coupled
         //naming convention
-        //IoC Container -- Inversion of control
-        private IProductService _productService;
+        //IoC Container -- Inversion of Control
+        IProductService _productService;
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
+
         [HttpGet("getall")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
         {
-            _productService = new ProductManager(new EfProductDal());
-            var result= _productService.GetAll();
+            //Swagger
+            //Dependency chain --
+            var result = _productService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
+
         }
+
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id) 
+        public IActionResult GetById(int id)
         {
-            _productService = new ProductManager(new EfProductDal());
-            var result= _productService.GetById(id);
+            var result = _productService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
             }
+
             return BadRequest(result);
         }
+
         [HttpPost("add")]
-        public IActionResult Add(Product product) 
+        public IActionResult Add(Product product)
         {
-            _productService = new ProductManager(new EfProductDal());
-            var result= _productService.Add(product);
+            var result = _productService.Add(product);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+        [HttpPost("update")]
+        public IActionResult Update(Product product)
+        {
+            var result = _productService.Update(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

@@ -7,13 +7,17 @@ using System.Diagnostics;
 namespace Core.Aspects.Autofac.Performance
 {
     /// <summary>
-    /// PerformanceAspect
+    /// interval: örneğin işlem 5sn de tamamlanmaz ise beni uyar demekmiş, 
+    /// sistemi yavaşlatan metodların tesbitinde kullanılır
     /// </summary>
     public class PerformanceAspect : MethodInterception
     {
         private readonly int _interval;
         private readonly Stopwatch _stopwatch;
-
+        /// <summary>
+        /// saniye cinsinden performans gerisayım süresi
+        /// </summary>
+        /// <param name="interval"></param>
         public PerformanceAspect(int interval)
         {
             _interval = interval;

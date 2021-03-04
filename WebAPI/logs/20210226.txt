@@ -1,0 +1,2 @@
+2021-02-26 23:26:26.248 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":2,"ProductName":"Aniseed xxxx","UnitsInStock":153,"UnitPrice":150.0},"Type":"Product"}]}
+2021-02-26 23:29:53.455 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":2,"ProductName":"Auud xxxx","UnitsInStock":153,"UnitPrice":150.0},"Type":"Product"}]}
