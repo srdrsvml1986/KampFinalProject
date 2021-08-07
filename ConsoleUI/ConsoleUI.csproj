@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AsterNET.NetStandard" Version="2.1.0" />
+    <PackageReference Include="AsterNET.NetStandard" Version="2.2.1" />
     <PackageReference Include="ConsoleTables" Version="2.4.2" />
     <PackageReference Include="Ninject" Version="3.3.4" />
   </ItemGroup>

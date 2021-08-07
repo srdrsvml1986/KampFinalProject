@@ -1,0 +1,2 @@
+2021-03-25 00:01:49.882 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":1,"ProductName":"Aaa","UnitsInStock":11,"UnitPrice":11.0},"Type":"Product"}]}
+2021-03-25 00:06:45.919 +03:00 [Information] {"FullName":null,"MethodName":"Add","User":"test kullanıcı","Parameters":[{"Name":"product","Value":{"ProductId":0,"CategoryId":1,"ProductName":"Aaa","UnitsInStock":11,"UnitPrice":11.0},"Type":"Product"}]}

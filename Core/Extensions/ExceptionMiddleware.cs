@@ -1,21 +1,22 @@
-﻿using Core.Utilities.Messages;
-using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
+using static Core.Extensions.ErrorDetails;
 
 namespace Core.Extensions
 {
     public class ExceptionMiddleware
     {
-        private readonly RequestDelegate _next;
-
+        private RequestDelegate _next;
 
         public ExceptionMiddleware(RequestDelegate next)
         {
             _next = next;
-
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -30,34 +31,31 @@ namespace Core.Extensions
             }
         }
 
-
-        private async Task HandleExceptionAsync(HttpContext httpContext, Exception e)
+        private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
         {
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            _ = e.Message;
-            string message;
+
+            IEnumerable<ValidationFailure> errors;
             if (e.GetType() == typeof(ValidationException))
             {
-                message = e.Message;
-                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
-            else if (e.GetType() == typeof(ApplicationException))
-            {
-                message = e.Message;
-                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
-            else if (e.GetType() == typeof(UnauthorizedAccessException))
-            {
-                message = e.Message;
-                httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            }
-            else
-            {
-                message = ExceptionMessage.InternalServerError;
+                errors = ((ValidationException)e).Errors;
+                httpContext.Response.StatusCode = 400;
+
+                return httpContext.Response.WriteAsync(new ValidationErrorDetails
+                {
+                    StatusCode = 400,
+                    Message = e.Message,
+                    Errors = errors
+                }.ToString());
+
             }
 
-            await httpContext.Response.WriteAsync(message);
+            return httpContext.Response.WriteAsync(new ErrorDetails
+            {
+                StatusCode = httpContext.Response.StatusCode,
+                Message = e.Message
+            }.ToString());
         }
     }
 }

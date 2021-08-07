@@ -55,7 +55,7 @@ namespace Business.Concrete
         [PerformanceAspect(10)]
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 0)
+            if (DateTime.Now.Hour == 1)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -67,6 +67,11 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
+        public IDataResult<List<Product>> GetAllByProductName(string productName)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.ProductName.Contains(productName)));
+        }
+
         [CacheAspect]
         [PerformanceAspect(5)]
         public IDataResult<Product> GetById(int id)

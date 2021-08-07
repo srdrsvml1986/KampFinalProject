@@ -22,6 +22,6 @@
         public static string PasswordError = "PasswordError";
         public static string UserNotFound = "UserNotFound";
         public static string UserRegistered = "UserRegistered";
-        public static string AuthorizationDenied = "AuthorizationDenied";
+        public static string AuthorizationDenied = "Lütfen giriş yapınız";
     }
 }
